@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Post</title>
+  <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+  <header>
+    <h1>Blog Post</h1>
+    <a href="index.html">Back to Homepage</a>
+  </header>
+
+  <section id="post-details">
+    <div id="post-container">
+      <p id="post-content"></p>
+      <img id="post-image" alt="Post Image" style="max-width: 100%; height: auto;">
+    </div>
+    
+    <button id="edit-button">Edit Post</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Blog</p>
+  </footer>
+
+  <script src="app.js"></script> 
+  <script>
+    // Get post ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // Check if post exists
+    if (postId !== null && posts[postId]) {
+      const post = posts[postId];
+
+      document.getElementById('post-content').textContent = post.content;
+      
+      if (post.imageUrl) {
+        document.getElementById('post-image').src = post.imageUrl;
+      } else {
+        document.getElementById('post-image').style.display = 'none';
+      }
+    } else {
+      document.getElementById('post-details').innerHTML = '<p>Post not found!</p>';
+    }
+
+    // Edit button functionality
+    document.getElementById('edit-button').addEventListener('click', function() {
+      window.location.href = `new-post.html?id=${postId}`; 
+    });
+  </script>
+</body>
+</html>

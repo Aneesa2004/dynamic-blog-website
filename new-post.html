@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Post</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Create New Blog Post</h1>
+    <a href="index.html">Back to Homepage</a>
+  </header>
+
+  <section id="post-form">
+    <form id="postForm">
+      <label for="title">Post Title:</label>
+      <input type="text" id="title" name="title" required><br><br>
+
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+
+      <label for="image">Image URL (Optional):</label>
+      <input type="text" id="image" name="image"><br><br>
+
+      <button type="submit">Save Post</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Blog</p>
+  </footer>
+
+  <script src="app.js"></script> 
+
+  <script>
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const postForm = document.getElementById('postForm');
+
+    
+    if (postId !== null) {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const post = posts[postId];
+
+      if (post) {
+        document.getElementById('title').value = post.title;
+        document.getElementById('content').value = post.content;
+        document.getElementById('image').value = post.imageUrl || '';
+        postForm.querySelector('button').textContent = 'Update Post'; 
+        
+        postForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          
+          post.title = document.getElementById('title').value;
+          post.content = document.getElementById('content').value;
+          post.imageUrl = document.getElementById('image').value;
+
+          posts[postId] = post;
+          localStorage.setItem('posts', JSON.stringify(posts));
+          
+          
+          window.location.href = `post.html?id=${postId}`;
+        });
+      }
+    } else {
+      
+      postForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const imageUrl = document.getElementById('image').value;
+
+        
+        savePost(title, content, imageUrl);
+
+        
+        window.location.href = 'index.html';
+      });
+    }
+
+    
+    function savePost(title, content, imageUrl) {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const newPost = { title, content, imageUrl };
+      posts.push(newPost);
+      localStorage.setItem('posts', JSON.stringify(posts));
+    }
+  </script>
+</body>
+</html>
+

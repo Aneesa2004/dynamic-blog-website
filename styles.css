@@ -1,97 +1,139 @@
-/* Basic Reset */
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  /* Body Styling */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;  
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px; 
     padding: 20px;
-  }
-  
-  /* Header Styling */
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  header h1 {
-    font-size: 2.5em;
-    color: #333;
-  }
-  
-  header a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
-  header a:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Main Section (Blog Post List) */
-  #posts {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  #post-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  #post-list li {
     background-color: white;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  #post-list li a {
-    font-size: 1.2em;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  #post-list li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Footer Styling */
-  footer {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);  
+    border-radius: 10px;
+    margin-top: 30px;  
+}
+
+/* Header */
+h1 {
     text-align: center;
-    margin-top: 20px;
-    font-size: 0.9em;
-    color: #777;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2em;
+    font-size: 2.5rem;
+    color: #4CAF50;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+}
+
+#post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  
+}
+
+.post {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-5px);  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+}
+
+h3 {
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    font-weight: 600;  
+}
+
+p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+button, a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover, a:hover {
+    background-color: #45a049;  
+    transform: scale(1.05);  
+}
+
+button:focus, a:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button.delete {
+    background-color: #f44336;  
+}
+
+button.delete:hover {
+    background-color: #d32f2f;
+}
+
+.create-post-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #008CBA;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.create-post-link:hover {
+    background-color: #006f8f;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
     }
-  
-    header a {
-      font-size: 1em;
+
+    h1 {
+        font-size: 2rem;
     }
-  
-    #posts {
-      padding: 10px;
+
+    .post {
+        padding: 15px;
     }
-  
-    #post-list li {
-      padding: 10px;
+
+    button, a {
+        font-size: 0.9rem;
+        padding: 8px 16px;
     }
-  }
-  
+}
