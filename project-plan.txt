@@ -1,0 +1,5 @@
+This is a dynamic blog website with CRUD functionality using JavaScript and local storage.
+It will have:
+- Homepage (list all blog posts)
+- Create Post page (add new posts)
+- Post Details page (view/edit/delete posts)
